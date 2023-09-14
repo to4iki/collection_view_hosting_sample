@@ -2,7 +2,7 @@ import SwiftUI
 import UIKit
 
 class HostingCell<Content: View>: UICollectionViewListCell {
-  private let hostingController = UIHostingController<Content?>(rootView: nil)
+  let hostingController = UIHostingController<Content?>(rootView: nil)
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -12,6 +12,12 @@ class HostingCell<Content: View>: UICollectionViewListCell {
   @available(*, unavailable)
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    hostingController.view.removeFromSuperview()
+    hostingController.removeFromParent()
   }
 
   func configure(rootView: Content, parentViewController parent: UIViewController) {

@@ -1,12 +1,12 @@
-struct SectionModels {
+struct SectionModel{
   enum Section: Hashable {
     case main
   }
 
   struct CellItem: Hashable {
-    let text: String
+    var uiState: ItemUiState
   }
 
-  let section: Section
-  let items: [CellItem]
+  var section: Section
+  var items: [CellItem]
 }
